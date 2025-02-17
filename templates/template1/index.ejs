@@ -1,0 +1,179 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="block">
+      <p>Text color picker</p>
+      <input type="color" class="colorPicker" id="colorPicker" />
+    </div>
+    <div class="block">
+      <p>Background picker</p>
+      <input type="color" class="leftSidePicker" id="leftSidePicker" />
+    </div>
+
+    <div class="container">
+      <div class="left-side">
+        <div class="profileText">
+          <div class="imgbx">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWoF5-YOoXgjUPKEdFlBFDTGCLfPMpcr9z2w&s"
+            />
+          </div>
+          <h2>
+            <!-- Drishti Jadhwani -->
+            <%= name %>
+            <br />
+            <span> <%= expert %></span>
+          </h2>
+        </div>
+        <div class="contactInfo">
+          <h3 class="title">Contact Info</h3>
+          <ul>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-phone" aria-hidden="true"></i
+              ></span>
+              <span class="text"> <%= contact %></span>
+            </li>
+
+            <li>
+              <span class="icon"
+                ><i class="fa fa-envelope" aria-hidden="true"></i
+              ></span>
+              <span class="text"> <%= email %></span>
+            </li>
+
+            <% if(website) { %>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-link" aria-hidden="true"></i
+              ></span>
+              <span class="text"> <%= website %></span>
+            </li>
+            <% } %> <% if(linkedin) { %>
+            <li>
+              <span class="icon">
+                <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+              </span>
+              <span class="text"> <%= linkedin %></span>
+            </li>
+            <% } %>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-home" aria-hidden="true"></i
+              ></span>
+              <span class="text"> <%= address %></span>
+            </li>
+          </ul>
+        </div>
+        <div class="contactInfo education">
+          <h3 class="title">Education</h3>
+          <ul>
+            <% education.forEach(function(edu) { %>
+            <li>
+              <h5><%= edu.start %> - <%= edu.end %></h5>
+              <h4><%= edu.degree %></h4>
+              <h4><%= edu.uni %></h4>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+        <div class="contactInfo language">
+          <h3 class="title">Language</h3>
+          <ul>
+            <% langugae.forEach(function(lan) { %>
+            <li>
+              <span class="text"><%= lan.name %></span>
+              <span class="percent">
+                <div style="width: <%= lan.percentage || 0 %>%"></div>
+              </span>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="about">
+          <h3 class="title2">Profile</h3>
+          <p><%=briefIntro %></p>
+        </div>
+        <div class="about">
+          <h3 class="title2">Experience</h3>
+          <% experience.forEach(function(exp) { %>
+
+          <div class="box">
+            <div class="year_company">
+              <h5><%=exp.expStart %> -<%=exp.expEnd %></h5>
+              <% console.log("company:", exp.companyName); %>
+
+              <h5><%=exp.companyName %></h5>
+            </div>
+            <div class="text">
+              <% console.log("job",exp.jobRole)%>
+              <h4><%= exp.jobRole %></h4>
+
+              <p><%= exp.jobDes %></p>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        <div class="skills">
+          <h3>Professional Skills</h3>
+          <div class="skill-list">
+            <ul>
+              <% skills.forEach(function(skill) { %>
+              <li>
+                <span><%=skill.skillName %></span>
+                <span class="percent">
+                  <div style="width: <%= skill.skillPer || 0 %>%"></div>
+                </span>
+                <% }) %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="interest">
+          <h3>Interest</h3>
+          <ul>
+            <li>
+              <span class="icon">
+                <i class="fa fa-gamepad" aria-hidden="true"></i
+              ></span>
+              <span class="name">Gaming</span>
+            </li>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-microphone" aria-hidden="true"></i
+              ></span>
+              <span class="name">Singing</span>
+            </li>
+            <li>
+              <span class="icon">
+                <i class="fa fa-book" aria-hidden="true"></i
+              ></span>
+              <span class="name">Reading</span>
+            </li>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-cutlery" aria-hidden="true"></i>
+              </span>
+              <span class="name">Cooking</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

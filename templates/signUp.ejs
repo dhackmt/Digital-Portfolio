@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <%-include("./partials/head") %>
+    </head>
+</head>
+<body>
+  <div>
+  <% if(locals.err){ %>
+    <div class="container mt-20">
+      <div class="alert alert-danger" role="alert">
+        <%=locals.err %>
+      </div>
+    </div>
+    <% } %>
+  </div>
+    <div class="container mt-20">
+        <form method="post" action="/user/signUp">
+            <div class="mb-3">
+              <label for="email1" class="form-label" >Email address</label>
+              <input type="email" class="form-control" id="email" name="email">
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>  
+    </div>
+   
+</body>
+
+<%-include("./partials/script") %>
+</html>
