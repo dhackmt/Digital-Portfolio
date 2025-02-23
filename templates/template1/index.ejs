@@ -13,13 +13,18 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <div class="block">
-      <p>Text color picker</p>
-      <input type="color" class="colorPicker" id="colorPicker" />
-    </div>
-    <div class="block">
-      <p>Background picker</p>
-      <input type="color" class="leftSidePicker" id="leftSidePicker" />
+    <div class="controls">
+      <h2>Customize</h2>
+      <label for="colorPicker">
+        Background <input type="color" class="colorPicker" id="colorPicker"
+      /></label>
+
+      <label for="leftSidePicker">
+        Text Color
+        <input type="color" class="leftSidePicker" id="leftSidePicker"
+      /></label>
+
+      <button onclick="saveResume()">Save & Download</button>
     </div>
 
     <div class="container">
@@ -174,6 +179,7 @@
         </div>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="/js/script.js"></script>
   </body>
 </html>

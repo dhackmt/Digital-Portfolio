@@ -6,16 +6,19 @@
 
 body {
   min-height: 100vh;
-  background-color: rgb(119, 162, 179);
-  padding-left: 50px;
+  background-color: gainsboro;
+  padding: 0; /* Remove extra padding */
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
 }
 
 .container {
   position: relative;
   min-height: 1000px;
-  width: 100%;
+  width: 60%;
   max-width: 1000px;
-  margin: 50px;
+  margin: 50px auto; /* Center it horizontally */
   background-color: #fff;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -116,6 +119,7 @@ body {
 .contactInfo.education h5 {
   color: #03a9f4;
   font-weight: 500;
+  font-size: 18px;
 }
 
 .contactInfo.education h4 {
@@ -143,11 +147,21 @@ body {
 }
 
 /* right side */
+/* .container .right-side {
+  position: relative;
+  padding: 40px;
+  background-color: #fff;
+  height: auto;
+} */
 .container .right-side {
   position: relative;
   padding: 40px;
   background-color: #fff;
   height: auto;
+  width: 100%; /* Fixed width */
+  max-width: 600px; /* Adjust as needed */
+  word-wrap: break-word; /* Ensure text breaks into the next line */
+  overflow-wrap: break-word;
 }
 
 .about {
@@ -177,11 +191,15 @@ p {
 .about .box .year_company {
   min-width: 150px;
 }
+.about .box .text {
+  min-width: 60%; /* Ensure text block takes full width */
+}
 
 .about .box .year_company h5 {
   color: #333;
   font-weight: 600;
   letter-spacing: 1px;
+  font-size: 18px;
 }
 
 .about .box .text h4 {
@@ -252,4 +270,41 @@ p {
 
 .interest ul li .icon {
   color: #03a9f4;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 50px 0;
+  padding: 10px;
+}
+
+.controls label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #003147;
+}
+
+.controls input[type="color"] {
+  border: none;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+}
+
+.controls button {
+  background-color: #003147;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.controls button:hover {
+  background-color: #03a9f4;
 }

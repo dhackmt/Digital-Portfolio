@@ -49,6 +49,10 @@ app.get("/template2/pages/contact", (req, res) => {
 
 app.get("/getData/:template", isAuthorized("normal"), handelGetData);
 
+app.get("/form/index", (req, res) => {
+  res.render("form/index");
+});
+
 app.listen(3000, () => {
   console.log("server is running");
 });
