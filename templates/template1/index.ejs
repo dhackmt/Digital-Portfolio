@@ -25,6 +25,7 @@
       /></label>
 
       <button onclick="saveResume()">Save & Download</button>
+      <a href="/user/dashboard">Home</a>
     </div>
 
     <div class="container">
@@ -99,9 +100,9 @@
           <ul>
             <% langugae.forEach(function(lan) { %>
             <li>
-              <span class="text"><%= lan.name %></span>
+              <span class="text"><%= lan.lanname %></span>
               <span class="percent">
-                <div style="width: <%= lan.percentage || 0 %>%"></div>
+                <div style="width: <%= lan.lanper|| 0 %>%"></div>
               </span>
             </li>
             <% }); %>

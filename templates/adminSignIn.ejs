@@ -140,20 +140,22 @@
         <h1>Welcome Back</h1>
         <p>Sign in to continue</p>
       </div>
-      <form method="post" action="/user/signIn">
+      <form method="post" action="/admin/adminSignIn">
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="adminEmail" required />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
+          <input type="password" id="password" name="adminPassword" required />
         </div>
-
+        <!-- <div class="forgot-password">
+          <a href="#">Forgot password?</a>
+        </div> -->
         <button type="submit">Sign In</button>
       </form>
       <div class="footer">
-        Don't have an account? <a href="/user/signUp">Sign Up</a>
+        Don't have an account? <a href="admin/adminSignUp">Sign Up</a>
       </div>
     </div>
   </body>

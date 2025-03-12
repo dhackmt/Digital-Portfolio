@@ -4,11 +4,10 @@ let banner = document.querySelector(".banner");
 dayNight.addEventListener("click", () => {
   banner.classList.toggle("night");
 });
-
 let typingEffect = new Typed("#text", {
-  strings: ["Drishti", "Software Engineer", "Product Engineer"],
+  strings: expertFields,
   loop: true,
   typeSpeed: 100,
   backSpeed: 100,
-  backdelay: 1000,
+  backDelay: 1000,
 });

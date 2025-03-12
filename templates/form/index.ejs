@@ -14,13 +14,23 @@
       <% } %>
     </div>
     <h1>Resume Form</h1>
+    <span>
+      <h1><a href="/user/dashboard"> Home </a></h1>
+    </span>
+
     <!--here it was /submit-->
     <form action="http://localhost:3000/submit" method="post">
       <!-- personal Info -->
       <div class="info">
         <h2>Personal Information</h2>
         <label for="name">Name</label><br />
-        <input type="text" name="name" class="name" id="name" /><br /><br />
+        <input
+          type="text"
+          name="name"
+          class="name"
+          id="name"
+          required
+        /><br /><br />
         <div class="expBox">
           <div class="expInfo">
             <label for="expert">Expertise</label><br />
@@ -29,6 +39,7 @@
               name="expert[]"
               class="expert"
               id="expert"
+              required
             /><br /><br />
 
             <button name="addExpertise" type="button">Add Expertise</button>
@@ -40,15 +51,15 @@
       <div class="contact">
         <h2>Contact Information</h2>
         <label for="phone">Enter phone number</label><br />
-        <input type="text" name="phone" id="phone" /><br /><br />
+        <input type="text" name="phone" id="phone" required /><br /><br />
         <label for="email">Enter email</label><br />
-        <input type="email" name="email" id="email" /><br /><br />
+        <input type="email" name="email" id="email" required /><br /><br />
         <label for="webiste">Enter webiste</label><br />
         <input type="text" name="website" id="webiste" /><br /><br />
         <label for="linkedin">Enter linkedin</label><br />
         <input type="text" name="linkedin" id="linkedin" /><br /><br />
         <label for="address">Enter address</label><br />
-        <input type="text" name="address" id="address" /><br /><br />
+        <input type="text" name="address" id="address" required /><br /><br />
       </div>
 
       <!-- education -->
@@ -56,13 +67,13 @@
         <div class="eduinfo">
           <h2>Education</h2>
           <label for="degree">Degree</label><br />
-          <input type="text" name="degree[]" id="degree" /><br /><br />
+          <input type="text" name="degree[]" id="degree" required /><br /><br />
           <label for="start">Start year</label><br />
-          <input type="text" name="start[]" id="start" /><br /><br />
+          <input type="text" name="start[]" id="start" required /><br /><br />
           <label for="end">End Year</label><br />
-          <input type="text" name="end[]" id="end" /><br /><br />
+          <input type="text" name="end[]" id="end" required /><br /><br />
           <label for="uni">University name</label><br />
-          <input type="text" name="uni[]" id="uni" /><br /><br />
+          <input type="text" name="uni[]" id="uni" required /><br /><br />
           <button name="addEdu" type="button">Add Education</button>
         </div>
       </div>
@@ -70,16 +81,17 @@
       <!-- language -->
       <div class="language">
         <label for="name">language</label>
-        <input type="text" name="lanname[]" /><br />
+        <input type="text" name="lanname[]" required /><br />
         Enter percentage of Expertise
-        <input type="text" name="lanper[]" /><br /><br />
+        <input type="text" name="lanper[]" required /><br /><br />
         <button name="addlng" type="button">Add language</button>
       </div>
 
       <!-- brief -->
       <div class="briefintro">
         <label for="intro">Provide brief Information about yourself</label>
-        <textarea name="briefintro" id="briefintro"></textarea><br /><br />
+        <textarea name="briefintro" id="briefintro" required></textarea
+        ><br /><br />
       </div>
 
       <!-- experience -->
@@ -87,15 +99,15 @@
         <div class="experience">
           <label for="experience">Experience</label>
           Enter start Year:
-          <input type="text" name="ex-start[]" />
+          <input type="text" name="ex-start[]" required />
           Enter end Year:
-          <input type="text" name="ex-end[]" />
+          <input type="text" name="ex-end[]" required />
           Enter company name:
-          <input type="text" name="cname[]" />
+          <input type="text" name="cname[]" required />
           Enter job-role:
-          <input type="text" name="job-role[]" />
+          <input type="text" name="job-role[]" required />
           Enter job description
-          <textarea name="job-des[]"></textarea><br /><br />
+          <textarea name="job-des[]" required></textarea><br /><br />
 
           <button type="button" name="addExperience">Add Experience</button
           ><br /><br />
@@ -106,13 +118,13 @@
       <div class="skillBox">
         <div class="skills">
           Enter Skill name:
-          <input type="text" name="skill-name[]" />
+          <input type="text" name="skill-name[]" required />
           Enter percentage of Expertise
-          <input type="text" name="skill-per[]" />
+          <input type="text" name="skill-per[]" required />
           <button type="button" name="addSkill">Add Skill</button>
         </div>
       </div>
-
+      <div></div>
       <button type="submit" value="submit">submit</button>
     </form>
 

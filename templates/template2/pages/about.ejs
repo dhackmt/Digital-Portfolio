@@ -7,29 +7,159 @@
     <link rel="stylesheet" href="/css/about.css" />
   </head>
   <body>
-    <div class="header">
-      <h1>About Me</h1>
-      <p>Passionate Developer | Problem Solver | Lifelong Learner</p>
-    </div>
-
     <div class="container">
-      <div class="content">
-        <div class="section">
-          <h2>Introduction</h2>
-          <p><%=briefintro %></p>
-        </div>
+        <div class="home-button">
+        <a href="/getdata/template2">
+          <button>Home</button>
+        </a>
+      <div class="left-side">
+        <div class="profileText">
+          <div class="imgbx">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWoF5-YOoXgjUPKEdFlBFDTGCLfPMpcr9z2w&s"
+            />
+          </div>
 
-        <div class="section">
-          <h2>Skills & Expertise</h2>
-          <p>
-            I specialize in creating user-friendly, efficient, and scalable
-            solutions. My expertise includes:
-          </p>
+          <h2>
+            <!-- Drishti Jadhwani -->
+            <%= portfolioData.name %>
+            <br />
+            <span> <%= portfolioData.expert %></span>
+          </h2>
+        </div>
+        <div class="contactInfo">
+          <h3 class="title">Contact Info</h3>
           <ul>
-            <li>Full-Stack Web Development</li>
-            <li>Responsive Design</li>
-            <li>Database Management</li>
-            <li>Problem Solving</li>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-phone" aria-hidden="true"></i
+              ></span>
+              <span class="text"> <%= portfolioData.contact %></span>
+            </li>
+
+            <li>
+              <span class="icon"
+                ><i class="fa fa-envelope" aria-hidden="true"></i
+              ></span>
+              <span class="text"> <%= portfolioData.email %></span>
+            </li>
+
+            <% if(portfolioData.website) { %>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-link" aria-hidden="true"></i
+              ></span>
+              <span class="text"> <%= portfolioData.website %></span>
+            </li>
+            <% } %> <% if(portfolioData.linkedin) { %>
+            <li>
+              <span class="icon">
+                <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+              </span>
+              <span class="text"> <%= portfolioData.linkedin %></span>
+            </li>
+            <% } %>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-home" aria-hidden="true"></i
+              ></span>
+              <span class="text"> <%= portfolioData.address %></span>
+            </li>
+          </ul>
+        </div>
+        <div class="contactInfo education">
+          <h3 class="title">Education</h3>
+          <ul>
+            <% portfolioData.education.forEach(function(edu) { %>
+            <li>
+              <h5><%= edu.start %> - <%= edu.end %></h5>
+              <h4><%= edu.degree %></h4>
+              <h4><%= edu.uni %></h4>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+        <div class="contactInfo language">
+          <h3 class="title">Language</h3>
+          <ul>
+            <% portfolioData.langugae.forEach(function(lan) { %>
+            <li>
+              <span class="text"><%= lan.lanname %></span>
+              <span class="percent">
+                <div style="width: <%= lan.lanper|| 0 %>%"></div>
+              </span>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="about">
+          <h3 class="title2">Profile</h3>
+          <p><%=portfolioData.briefIntro %></p>
+        </div>
+        <div class="about">
+          <h3 class="title2">Experience</h3>
+          <% portfolioData.experience.forEach(function(exp) { %>
+
+          <div class="box">
+            <div class="year_company">
+              <h5><%=exp.expStart %> -<%=exp.expEnd %></h5>
+              <% console.log("company:", exp.companyName); %>
+
+              <h5><%=exp.companyName %></h5>
+            </div>
+            <div class="text">
+              <% console.log("job",exp.jobRole)%>
+              <h4><%= exp.jobRole %></h4>
+
+              <p><%= exp.jobDes %></p>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        <div class="skills">
+          <h3>Professional Skills</h3>
+          <div class="skill-list">
+            <ul>
+              <% portfolioData.skills.forEach(function(skill) { %>
+              <li>
+                <span><%=skill.skillName %></span>
+                <span class="percent">
+                  <div style="width: <%= skill.skillPer || 0 %>%"></div>
+                </span>
+                <% }) %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="interest">
+          <h3>Interest</h3>
+          <ul>
+            <li>
+              <span class="icon">
+                <i class="fa fa-gamepad" aria-hidden="true"></i
+              ></span>
+              <span class="name">Gaming</span>
+            </li>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-microphone" aria-hidden="true"></i
+              ></span>
+              <span class="name">Singing</span>
+            </li>
+            <li>
+              <span class="icon">
+                <i class="fa fa-book" aria-hidden="true"></i
+              ></span>
+              <span class="name">Reading</span>
+            </li>
+            <li>
+              <span class="icon"
+                ><i class="fa fa-cutlery" aria-hidden="true"></i>
+              </span>
+              <span class="name">Cooking</span>
+            </li>
           </ul>
         </div>
       </div>

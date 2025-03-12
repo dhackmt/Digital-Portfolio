@@ -9,26 +9,42 @@
   <body>
     <section class="banner">
       <header>
-        <div class="image"><img src="/images/female.png" /></div>
+        <div class="image"><img src="/images/icon.jpg" /></div>
         <!-- Drishti <span>Jadhwani</span> -->
         <a href="#" class="logo"><%= name %></a>
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="/user/dashboard">Home</a></li>
           <li><a href="/template2/pages/about">About</a></li>
-          <li><a href="#">Work</a></li>
           <li><a href="/template2/pages/contact">Contact</a></li>
         </ul>
       </header>
       <div class="content">
         <h2>I am <span id="text"></span></h2>
         <button class="chat">Let's Chat</button>
-        <button class="website">Visit me</button>
+        <!-- <button class="website">Visit me</button> -->
       </div>
       <div class="dayNight">
         <ion-icon name="sunny"></ion-icon>
         <ion-icon name="moon"></ion-icon>
       </div>
     </section>
+    <script>
+          let expertFields = <%- JSON.stringify(portfolioData.expert) %>;
+           let whatsappNumber = "<%= portfolioData.contact %>"; // Get WhatsApp number
+          let linkedin= "<%= portfolioData.linkedin %>";
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatButton = document.querySelector(".chat");
+
+        if (whatsappNumber) {
+          chatButton.addEventListener("click", function () {
+            let whatsappLink = `https://wa.me/${whatsappNumber}`;
+            window.open(whatsappLink, "_blank");
+          });
+        } else {
+          console.warn("WhatsApp number not provided in portfolioData");
+        }
+      });
+    </script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

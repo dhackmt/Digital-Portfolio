@@ -1,15 +1,22 @@
 const jwt = require("jsonwebtoken");
 const secret = "ABC123";
 const User = require("../models/UserSchema");
+const Admin = require("../models/adminSchema");
 
-const createToken = async (email) => {
-  console.log("Creating token");
-  const user = await User.findOne({ email: email });
+const createToken = async (email, role) => {
+  console.log("Creating token for", role);
+  let user;
+  if (role == "user") {
+    user = await User.findOne({ email: email });
+  } else if (role == "admin") {
+    user = await Admin.findOne({ adminEmail: email });
+  }
+  console.log(user);
   const userid = user._id;
   const payload = {
     userId: userid,
     email: email,
-    role: "normal",
+    role: role,
   };
   const token = jwt.sign(payload, secret);
   return token;

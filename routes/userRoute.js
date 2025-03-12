@@ -12,6 +12,10 @@ router.get("/signUp", (req, res) => {
 router.get("/signIn", (req, res) => {
   return res.render("signIn");
 });
+
+router.get("/dashboard", (req, res) => {
+  return res.render("dashboard");
+});
 router.post("/signUp", handleCreateUser);
 router.post("/signIn", handleUserLogin);
 

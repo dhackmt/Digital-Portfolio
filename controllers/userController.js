@@ -3,6 +3,7 @@ const { createToken } = require("../common/token");
 
 const handleCreateUser = async (req, res) => {
   console.log(req.body);
+  console.log("User side reached");
   const { email, password } = req.body;
   try {
     const existingEmail = await User.findOne({ email });
@@ -17,7 +18,7 @@ const handleCreateUser = async (req, res) => {
       password,
     });
     console.log(user);
-    const token = await createToken(email);
+    const token = await createToken(email, "user");
     console.log(token);
     res.cookie("token", token);
     console.log(req.cookies.token);
@@ -35,7 +36,7 @@ const handleUserLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.matchPassword(email, password);
-    const token = await createToken(email);
+    const token = await createToken(email, "user");
     console.log(token);
     res.cookie("token", token);
     res.status(200).render("dashboard", {

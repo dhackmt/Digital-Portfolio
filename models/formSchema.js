@@ -58,6 +58,18 @@ const formSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
+    version: {
+      type: Number,
+      required: true,
+    },
+    active: {
+      type: Boolean,
+      required: true,
+    },
+    archieve: {
+      type: Boolean,
+      required: true,
+    },
   },
   {
     timestamps: true,

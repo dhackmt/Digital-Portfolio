@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const UserRoute = require("./routes/userRoute");
+const AdminRoute = require("./routes/adminRoute");
 const { isAuthorized } = require("./common/authmiddleware");
 const {
   handleFormData,
   handelGetData,
 } = require("./controllers/formController");
 const cookieParser = require("cookie-parser");
+const FormData = require("./models/formSchema");
 
 const app = express();
 
@@ -28,26 +30,64 @@ mongoose
 
 app.use("/user", UserRoute);
 
-app.post("/submit", isAuthorized("normal"), handleFormData);
+app.use("/admin", AdminRoute);
+app.post("/submit", isAuthorized("user", "admin"), handleFormData);
 
-app.get("/template1/index", (req, res) => {
-  res.render("template1/index", portfolioData);
-});
+// app.get("/template1/index", (req, res) => {
+//   res.render("template1/index", portfolioData);
+// });
 
 app.get("/template2/index", (req, res) => {
-  res.render("template2/index", portfolioData);
+  res.render("template2/index");
 });
 
-//about page;
-app.get("/template2/pages/about", (req, res) => {
-  res.render("template2/pages/about", portfolioData);
-});
+app.get(
+  "/template2/pages/about",
+  isAuthorized("user", "admin"),
+  async (req, res) => {
+    const user = req.user;
+    if (!user) {
+      return res.redirect("/login"); // Ensure user is authenticated
+    }
 
-app.get("/template2/pages/contact", (req, res) => {
-  res.render("template2/pages/contact", portfolioData);
-});
+    const userId = user.userId;
+    const userFormData = await FormData.findOne({
+      userId: userId,
+      archieve: false,
+    });
 
-app.get("/getData/:template", isAuthorized("normal"), handelGetData);
+    if (!userFormData) {
+      return res.render("./form/index", {
+        message: "You need to fill the form first",
+      });
+    }
+
+    res.render("template2/pages/about", { portfolioData: userFormData });
+  }
+);
+
+app.get(
+  "/template2/pages/contact",
+  isAuthorized("user", "admin"),
+  async (req, res) => {
+    const user = req.user;
+    const userId = user.userId;
+    const userFormData = await FormData.findOne({
+      userId: userId,
+      archieve: false,
+    });
+
+    if (!userFormData) {
+      return res.render("./form/index", {
+        message: "You need to fill the form first",
+      });
+    }
+
+    res.render("template2/pages/contact", { portfolioData: userFormData });
+  }
+);
+
+app.get("/getData/:template", isAuthorized("user", "admin"), handelGetData);
 
 app.get("/form/index", (req, res) => {
   res.render("form/index");

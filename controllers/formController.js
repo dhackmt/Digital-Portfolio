@@ -7,6 +7,7 @@ const handleFormData = async (req, res) => {
 
   const user = req.user;
   const userId = user.userId;
+  let version = 1;
   let portfolioData = {};
   //education
 
@@ -40,12 +41,12 @@ const handleFormData = async (req, res) => {
   languageDetails = Array.isArray(lanname)
     ? lanname.map((lan, index) => ({
         lanname: lan,
-        lanper: Number(lanper[index]),
+        lanper: lanper[index],
       }))
     : [
         {
           lanname,
-          lanper: Number(lanper),
+          lanper: lanper,
         },
       ];
 
@@ -95,6 +96,20 @@ const handleFormData = async (req, res) => {
         },
       ];
 
+  const existingFormData = await FormData.findOne({
+    userId: userId,
+    active: true,
+    archieve: false,
+  });
+  if (existingFormData) {
+    version = existingFormData.version;
+    version++;
+    const updateData = await FormData.updateOne(
+      { userId: userId },
+      { $set: { archieve: true } }
+    );
+  }
+
   const formData = await FormData.create({
     userId: userId,
     name: name,
@@ -107,18 +122,12 @@ const handleFormData = async (req, res) => {
     expert: expert,
     education: educationDetails,
     experience: ExpDetails,
-    langugae: [
-      {
-        name: "html",
-        percentage: 80,
-      },
-      {
-        name: "java",
-        percentage: 90,
-      },
-    ],
+    langugae: languageDetails,
     skills: skillDetails,
     interests: ["Reading", "writing"],
+    version: version,
+    archieve: false,
+    active: true,
   });
 
   console.log(formData);
@@ -143,19 +152,24 @@ const handleFormData = async (req, res) => {
 
 const handelGetData = async (req, res) => {
   try {
+    console.log(req.user);
     const user = req.user;
     const userId = user.userId;
     const templateName = req.params.template;
     console.log(userId);
-    const userFormData = await FormData.findOne({ userId: userId });
+    const userFormData = await FormData.findOne({
+      userId: userId,
+      archieve: false,
+    });
+
     if (!userFormData) {
       res.render("./form/index", {
         message: "You need to fill form first",
       });
     } else {
+      res.locals.portfolioData = userFormData;
       res.render(`./${templateName}/index`, userFormData);
     }
-    console.log(userFormData);
   } catch (error) {
     console.log(error);
     res.json({ message: "Error" });
